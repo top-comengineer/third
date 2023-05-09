@@ -1,11 +1,8 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1
--- Genereringstid: 01. 05 2019 kl. 19:57:29
--- Serverversion: 10.1.37-MariaDB
--- PHP-version: 7.2.14
+-- Genereringstid: 05. 09 2023 kl. 19:57:29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,11 +38,11 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `title`, `body`, `created_at`) VALUES
-(1, 2, 'Post1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2019-04-27 17:01:03'),
-(2, 4, 'Post2', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ', '2019-04-27 17:01:03'),
-(3, 4, 'title-3', 'this is my first test dump demo', '2019-04-27 17:56:40'),
-(8, 4, 'The End-Game', 'we are in the endgame now', '2019-04-27 20:28:50'),
-(9, 4, 'Bill-Bat', 'I am bill &#34;dam&#34; bat', '2019-04-27 20:38:59');
+(1, 2, 'Post1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2023-05-09 17:01:03'),
+(2, 4, 'Post2', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ', '2023-05-09 17:01:03'),
+(3, 4, 'title-3', 'this is my first test dump demo', '2023-05-09 17:56:40'),
+(8, 4, 'The End-Game', 'we are in the endgame now', '2019-05-09 20:28:50'),
+(9, 4, 'Bill-Bat', 'I am bill &#34;dam&#34; bat', '2019-05-09 20:38:59');
 
 -- --------------------------------------------------------
 
@@ -66,8 +63,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(2, 'Abdi Adan', 'adan@hotmail.com', '$2y$10$ITRbLhwUMeSn.W5XkowJz.r3Jm1QVhRWlMuhHlcFg//5XjFIBj60u', '2019-04-27 15:16:35'),
-(4, 'John Doe', 'jd@hotmail.com', '$2y$10$d.EtCn6Dq0w1VaU9uYakx.8Ai6f90lOS0I9du/izdLyTpgBR/UzlO', '2019-04-27 15:51:30');
+(2, 'Abdi Adan', 'adan@hotmail.com', '$2y$10$ITRbLhwUMeSn.W5XkowJz.r3Jm1QVhRWlMuhHlcFg//5XjFIBj60u', '2023-05-09 15:16:35'),
+(4, 'John Doe', 'jd@hotmail.com', '$2y$10$d.EtCn6Dq0w1VaU9uYakx.8Ai6f90lOS0I9du/izdLyTpgBR/UzlO', '2023-05-09 15:51:30');
 
 --
 -- Begrænsninger for dumpede tabeller

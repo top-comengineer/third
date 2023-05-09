@@ -10,8 +10,8 @@
  // App Route:
   define ('APPROOT', dirname(dirname(__FILE__)));
   //URL Root:
-  define('URLROOT', 'http://localhost:8080/mvc_auth_demo');
+  define('URLROOT', 'http://localhost/third');
   //Site Name
-  define('SITENAME','MVC_LOGIN_DEMO');
+  define('SITENAME','MVC');
   // App Version
   define('APPversion','1.0.0.');

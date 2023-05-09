@@ -2,7 +2,7 @@
 
   Options -Multiviews
   RewriteEngine on
-  RewriteBase /mvc_auth_demo/public
+  RewriteBase /third/public
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]

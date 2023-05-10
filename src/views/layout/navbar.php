@@ -18,7 +18,7 @@
         </li> -->
         <?php if(isset($_SESSION['user_id'])): ?>
         <li class="nav-item ">
-          <a class="nav-link" href="<?php echo URLROOT;?>/entity">Dashboard</a>
+          <a class="nav-link" href="<?php echo URLROOT;?>/entities">Dashboard</a>
         </li>
         <?php endif; ?>
       </ul>

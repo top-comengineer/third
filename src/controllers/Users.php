@@ -93,7 +93,7 @@
 
             } else {
                 // Load view with errors
-                $this->view('users/register', $data);
+                $this->view('auth/register', $data);
             }
 
 
@@ -114,7 +114,7 @@
                 'confirm_password_error'=>''
             ];
 
-            $this->view('users/register', $data);
+            $this->view('auth/register', $data);
             
         }
 
@@ -171,12 +171,12 @@
                 
               } else {
                 $data['password_error'] = 'Password incorrect';
-                $this->view('users/login', $data);
+                $this->view('auth/login', $data);
               }
 
             } else {
                 // Load view with errors
-                $this->view('users/login', $data);
+                $this->view('auth/login', $data);
             }
 
         } else {
@@ -189,7 +189,7 @@
           ];
   
           // Load view
-          $this->view('users/login', $data);
+          $this->view('auth/login', $data);
         }
     }
 
@@ -199,8 +199,11 @@
         $_SESSION['user_name'] = $user->username;
         redirect('posts/');
     }
-
     
+    public function profile(){
+        $this->view("auth/profile");
+    }
+
     public function logout(){
         unset($_SESSION['user_id']);
         unset($_SESSION['user_email']);

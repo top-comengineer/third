@@ -9,8 +9,8 @@
   public function index(){
 
     $data = [
-      'title' => 'welcome index',  
-      'description'=>'Simple social network built on the Supernova Inc MVC Framework'
+      'title' => 'Welcome to Personal Expense Tracking System',  
+      'description'=>'Welcome to Your Personal Expense Tracking System'
     ];
 
 

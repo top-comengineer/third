@@ -12,6 +12,6 @@
   //URL Root:
   define('URLROOT', 'http://localhost/third');
   //Site Name
-  define('SITENAME','MVC');
+  define('SITENAME','Personal Expense Tracking System');
   // App Version
   define('APPversion','1.0.0.');

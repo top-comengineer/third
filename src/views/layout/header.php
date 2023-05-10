@@ -19,4 +19,4 @@
 
   <?php require_once APPROOT.'../views/layout/navbar.php';?>
 
-  <div class="container">
+  <div>

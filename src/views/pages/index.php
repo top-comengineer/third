@@ -1,11 +1,5 @@
 <?php require APPROOT .'/views/layout/header.php'; ?>
-
-<div class="jumbotron jumbotron-fluid text-center">
-  <div class="container">
-    <h1 class="display-3"><?php echo $data['title'] ; ?></h1>
-    <p class="lead"><?php echo $data['description'] ?></p>
-  </div>
+<div class="home-background">
+  <h1 class="title">Welcome to <br />Personal Expense Tracking System</h1>
 </div>
-
-
 <?php require APPROOT .'/views/layout/footer.php'; ?>

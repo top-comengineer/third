@@ -10,9 +10,9 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
+        <!-- <li class="nav-item ">
           <a class="nav-link" href="<?php echo URLROOT;?>">Home</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="<?php echo URLROOT;?>/pages/about">About</a>
         </li> -->

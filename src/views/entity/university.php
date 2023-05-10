@@ -52,16 +52,15 @@ $(document).ready(function() {
   $(".save").hide();
   $(".cancel").hide();
   $('[data-toggle="tooltip"]').tooltip();
-  var actions = $("table td:last-child").html();
   // Append table with add row form on add new button click
   $(".add-new").click(function() {
-    $(this).attr("disabled", "disabled");
     var index = $("table tbody tr:last-child").index();
+    $(this).attr("disabled", "disabled");
     var row = '<tr>' +
       '<td></td>' +
       '<td><input type="text" class="form-control" name="catName" id="catName"></td>' +
       '<td><input type="text" class="form-control" name="price" id="price"></td>' +
-      '<td>' + actions + '</td>' +
+      '<td><a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a> <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>' +
       '</tr>';
     $("table").append(row);
     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();

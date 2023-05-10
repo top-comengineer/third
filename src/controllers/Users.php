@@ -197,7 +197,7 @@
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->username;
-        redirect('entity/');
+        redirect('entities/');
     }
     
     public function profile(){

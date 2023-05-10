@@ -3,7 +3,8 @@
   margin: 30px auto;
   background: #fff;
   padding: 20px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 15px !important;
 }
 .table-title {
   padding-bottom: 10px;

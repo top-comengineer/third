@@ -4,7 +4,7 @@
   <h2 class="title">Please choose your expense type below</h2>
   <div class="col-md-12 ">
     <div class="row ">
-      <a class="col-xl-4 col-md-6 col-xs-12" href="<?php echo URLROOT; ?>/entity/university">
+      <a class="col-xl-4 col-md-6 col-xs-12" href="<?php echo URLROOT; ?>/entities/university">
         <div class="card l-bg-green-dark">
           <div class="card-statistic-3 p-4">
             <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>

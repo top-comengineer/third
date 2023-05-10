@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#165424;">
   <div class="container">
-    <a class="navbar-brand" href="<?php echo URLROOT;?>"><?php echo SITENAME; ?></a>
+    <a class="navbar-brand" href="<?php echo URLROOT;?>">
+      <img src="<?php echo URLROOT; ?>/public/assets/img/logo.png" width="60px" alt="logo" />
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,7 +18,7 @@
         </li> -->
         <?php if(isset($_SESSION['user_id'])): ?>
         <li class="nav-item ">
-          <a class="nav-link" href="<?php echo URLROOT;?>/posts">Dashboard</a>
+          <a class="nav-link" href="<?php echo URLROOT;?>/entity">Dashboard</a>
         </li>
         <?php endif; ?>
       </ul>

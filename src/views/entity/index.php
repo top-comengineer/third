@@ -4,7 +4,7 @@
   <h2 class="title">Please choose your expense type below</h2>
   <div class="col-md-12 ">
     <div class="row ">
-      <a class="col-xl-4 col-md-6 col-xs-12">
+      <a class="col-xl-4 col-md-6 col-xs-12" href="<?php echo URLROOT; ?>/entity/university">
         <div class="card l-bg-green-dark">
           <div class="card-statistic-3 p-4">
             <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
@@ -14,7 +14,7 @@
             <div class="row align-items-center mb-2 d-flex">
               <div class="col-8">
                 <h2 class="d-flex align-items-center mb-0">
-                  578
+                  $578
                 </h2>
               </div>
               <div class="col-4 text-right">
@@ -64,7 +64,7 @@
             <div class="row align-items-center mb-2 d-flex">
               <div class="col-8">
                 <h2 class="d-flex align-items-center mb-0">
-                  3,243
+                  $3,243
                 </h2>
               </div>
               <div class="col-4 text-right">

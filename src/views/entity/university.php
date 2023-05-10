@@ -22,14 +22,16 @@
         </tr>
       </thead>
       <tbody>
-        <?php $totalPrice = 0;?>
+        <?php $totalPrice = 0; ?>
         <?php foreach($data['uni_entities'] as $key => $uni_entity) :?>
-        <tr>
+        <tr id="<?php echo $uni_entity->id?>">
           <td><?php echo ($key+1);?></td>
           <td><?php echo $uni_entity->name; ?></td>
           <td><?php echo $uni_entity->price; ?></td>
           <td>
             <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+            <a class="save" title="Dave" data-toggle="tooltip"><span class="material-icons">save</span></a>
+            <a class="cancel" title="Cancel" data-toggle="tooltip"><span class="material-icons">cancel</span></a>
             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
             <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
           </td>
@@ -47,6 +49,8 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+  $(".save").hide();
+  $(".cancel").hide();
   $('[data-toggle="tooltip"]').tooltip();
   var actions = $("table td:last-child").html();
   // Append table with add row form on add new button click
@@ -99,17 +103,63 @@ $(document).ready(function() {
 
   // Edit row on edit button click
   $(document).on("click", ".edit", function() {
+    let tmpData = [];
     $(this).parents("tr").find("td:not(:last-child)").each(function() {
       $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+      tmpData.push($(this)[0].children[0].defaultValue);
     });
-    $(this).parents("tr").find(".add, .edit").toggle();
+    $($(this).parents("tr").find("td:last-child")[0].children[1]).show();
+    $($(this).parents("tr").find("td:last-child")[0].children[2]).show();
+    $($(this).parents("tr").find("td:last-child")[0].children[0]).hide();
+    $($(this).parents("tr").find("td:last-child")[0].children[3]).hide();
+    $($(this).parents("tr").find("td:last-child")[0].children[4]).hide();
     $(".add-new").attr("disabled", "disabled");
   });
 
   // Delete row on delete button click
   $(document).on("click", ".delete", function() {
+    $.ajax({
+      type: "POST",
+      url: '<?php echo URLROOT; ?>/entities/university',
+      data: {
+        id: $(this).parents("tr")[0].id
+      },
+      success: function(res) {
+        window.location.reload();
+      }
+    })
     $(this).parents("tr").remove();
     $(".add-new").removeAttr("disabled");
+  });
+
+  // Cancel row on cancel button click
+  $(document).on("click", ".cancel", function() {
+    window.location.reload();
+  })
+
+  //Update row on save button click
+  $(document).on("click", ".save", function() {
+    var empty = false;
+    var input = $(this).parents("tr").find('input[type="text"]');
+    $(this).parents("tr").find(".error").first().focus();
+    if (!empty) {
+      let tmpData = [];
+      input.each(function() {
+        tmpData.push($(this).parent("td").html($(this).val())[0].innerText)
+      });
+      $.ajax({
+        type: "POST",
+        url: '<?php echo URLROOT; ?>/entities/university',
+        data: {
+          updateData: tmpData,
+          entId: $(this).parents("tr")[0].id
+        },
+        success: function(res) {
+          window.location.reload();
+        }
+      })
+      $(".add-new").removeAttr("disabled");
+    }
   });
 });
 </script>

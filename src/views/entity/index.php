@@ -29,7 +29,7 @@
         </div>
       </a>
 
-      <a class="col-xl-4 col-md-6 col-xs-12">
+      <a class="col-xl-4 col-md-6 col-xs-12" href="<?php echo URLROOT; ?>/entities/monthly">
         <div class="card l-bg-orange-dark">
           <div class="card-statistic-3 p-4">
             <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
@@ -54,8 +54,8 @@
         </div>
       </a>
 
-      <a class="col-xl-4 col-md-6 col-xs-12">
-        <div class="card l-bg-cherry">
+      <a class="col-xl-4 col-md-6 col-xs-12" href="<?php echo URLROOT; ?>/entities/household">
+        <div class=" card l-bg-cherry">
           <div class="card-statistic-3 p-4">
             <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
             <div class="mb-4">

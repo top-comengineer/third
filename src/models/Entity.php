@@ -72,7 +72,7 @@
       }
     }
 
-    public function deleteEntify($id){
+    public function deleteEntity($id){
       $this->db->query('DELETE FROM entity WHERE id = :id');
       // Bind values
       $this->db->bind(':id', $id);

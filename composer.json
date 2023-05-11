@@ -1,0 +1,10 @@
+{
+  "name": "farzad/phpmvc",
+  "description": "PHP MVC From Scratch",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "./src"
+    }
+  }
+}

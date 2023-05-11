@@ -193,7 +193,32 @@
         }
     }
 
+    public function update(){
+      // Check for POST request
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // Process form
+
+        // Sanitize POST data
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $data = [
+          'name'      => trim($_POST['uname']),
+          'email'     => trim($_POST['email']),
+          'password'  => trim($_POST['pswd']),
+        ];
+
+        if($this->userModel->update($data)){
+          flash('update_sccuss', 'Your profile is updated successfully!');
+        //   $_SESSION['user_id'] = $user->id;
+        //   $_SESSION['user_email'] = $user->email;
+        //   $_SESSION['user_name'] = $user->username;
+          $this->createUserSession($data);
+        //   redirect("/users/profile");
+        }
+      }
+    }
+
     public function createUserSession($user){
+        var_dump($user);
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->username;

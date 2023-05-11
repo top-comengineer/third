@@ -37,6 +37,20 @@
       }
     }
 
+    // Update profile
+    public function update($data) {
+      var_dump($data);
+      $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+      $this->db->query("UPDATE users SET username = '". $data['name'] ."', email = '" . $data['email'] . "', password = '" . $data["password"] . "' WHERE id=".$_SESSION["user_id"]);
+      
+      // Execute
+      if($this->db->execute()){
+        return true;
+      } else {
+        return false;
+      }
+    } 
+
     // Find user by email
     public function findUserByEmail($email){
       $this->db->query('SELECT * FROM users WHERE email = :email');
@@ -69,4 +83,4 @@
   }//end-of-User-class
 
 
-?> 
+?>

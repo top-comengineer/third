@@ -37,6 +37,27 @@
       }
     }
 
+    // Admin 
+    public function getUsers() {
+      $this->db->query("SELECT * FROM users WHERE role = 2");
+      $results = $this->db->resultSet();
+      return $results;
+    }
+
+    // delete user
+
+    public function deleteUser($id) {
+      $this->db->query('DELETE FROM users WHERE id = :id');
+      // Bind values
+      $this->db->bind(':id', $id);
+      // Execute
+      if($this->db->execute()){
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     // Update profile
     public function update($data) {
       $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);

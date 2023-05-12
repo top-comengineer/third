@@ -160,7 +160,6 @@
               $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
               if($loggedInUser){
-
                // Create Session
                $this->createUserSession($loggedInUser);
                 
@@ -219,26 +218,53 @@
         }
       }
     }
-    public function createUserSession($user){
-        $_SESSION['user_id'] = $user->id;
-        $_SESSION['user_email'] = $user->email;
-        $_SESSION['user_name'] = $user->username;
-        if(isset($user->avatar)){
-          $_SESSION['user_avatar'] = $user->avatar;
+
+    public function admin() {
+      $users = $this->userModel->getUsers();
+      $users = [
+        'users' => $users
+      ];
+      $this->view('auth/admin', $users);
+    }
+
+    // user delete in case of admin
+
+    public function delete() {
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        // Sanitize POST data
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        if($this->userModel->deleteUser($_POST['id'])){
+          flash('delete user', 'User is deleted successfully!');
         }
-        redirect('entities/');
+      }
+    }
+    
+    public function createUserSession($user){
+      $_SESSION['user_id'] = $user->id;
+      $_SESSION['user_email'] = $user->email;
+      $_SESSION['user_name'] = $user->username;
+      if(isset($user->role)){
+        $_SESSION['user_role'] = $user->role;
+      }
+      $_SESSION['user_role'] = $user->role;
+      if(isset($user->avatar)){
+        $_SESSION['user_avatar'] = $user->avatar;
+      }
+      redirect('entities/');
     }
     
     public function profile(){
-        $this->view("auth/profile");
+      $this->view("auth/profile");
     }
 
     public function logout(){
-        unset($_SESSION['user_id']);
-        unset($_SESSION['user_email']);
-        unset($_SESSION['user_name']);
-        session_destroy();
-        redirect('users/login');
+      unset($_SESSION['user_id']);
+      unset($_SESSION['user_email']);
+      unset($_SESSION['user_name']);
+      session_destroy();
+      redirect('users/login');
     }
  }
 ?>

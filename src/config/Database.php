@@ -55,7 +55,6 @@
             $type = PDO::PARAM_STR;
         }
       }
-
       $this->stmt->bindValue($param, $value, $type);
     }
 

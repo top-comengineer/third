@@ -28,14 +28,14 @@
 
             //Init Data
             $data = [
-            'username' => trim($_POST['username']),
-            'email' => trim($_POST['email']),
-            'password'=> trim($_POST['password']),
-            'confirm_password' => trim($_POST['confirm_password']),
-            'username_error'=>'',
-            'email_error' =>'',
-            'password_error'=>'',
-            'confirm_password_error'=>''
+              'username' => trim($_POST['username']),
+              'email' => trim($_POST['email']),
+              'password'=> trim($_POST['password']),
+              'confirm_password' => trim($_POST['confirm_password']),
+              'username_error'=>'',
+              'email_error' =>'',
+              'password_error'=>'',
+              'confirm_password_error'=>''
             ];
 
             // Validate Email
@@ -95,11 +95,6 @@
                 // Load view with errors
                 $this->view('auth/register', $data);
             }
-
-
-
-
-
         }else{
 
             //Init Data
@@ -131,10 +126,10 @@
             //Init Data
             $data = [
             
-            'email' => trim($_POST['email']),
-            'password'=> trim($_POST['password']),
-            'email_error' =>'',
-            'password_error'=>'',
+              'email' => trim($_POST['email']),
+              'password'=> trim($_POST['password']),
+              'email_error' =>'',
+              'password_error'=>'',
           
             ];
 
@@ -208,20 +203,29 @@
 
         if($this->userModel->update($data)){
           flash('update_sccuss', 'Your profile is updated successfully!');
-        //   $_SESSION['user_id'] = $user->id;
-        //   $_SESSION['user_email'] = $user->email;
-        //   $_SESSION['user_name'] = $user->username;
-          $this->createUserSession($data);
-        //   redirect("/users/profile");
+          $_SESSION['user_email'] = $data["email"];
+          $_SESSION['user_name'] = $data["name"];
         }
       }
     }
 
+    public function avatar() {
+      if(is_array($_FILES)) {
+        if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+      		$sourcePath = $_FILES['userImage']['tmp_name'];
+          $fileName = $_FILES['userImage']["full_path"];
+          move_uploaded_file($sourcePath, "public/assets/img/" . $fileName);
+          $this->userModel->insertAvatar($fileName);
+        }
+      }
+    }
     public function createUserSession($user){
-        var_dump($user);
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->username;
+        if(isset($user->avatar)){
+          $_SESSION['user_avatar'] = $user->avatar;
+        }
         redirect('entities/');
     }
     
@@ -236,11 +240,5 @@
         session_destroy();
         redirect('users/login');
     }
-
  }
-
-
-
-
-
 ?>

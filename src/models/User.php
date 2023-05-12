@@ -39,7 +39,6 @@
 
     // Update profile
     public function update($data) {
-      var_dump($data);
       $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
       $this->db->query("UPDATE users SET username = '". $data['name'] ."', email = '" . $data['email'] . "', password = '" . $data["password"] . "' WHERE id=".$_SESSION["user_id"]);
       
@@ -50,6 +49,18 @@
         return false;
       }
     } 
+
+    public function insertAvatar($fileName){
+      print_r($fileName);
+      $this->db->query("UPDATE users SET avatar = '" . $fileName . "' WHERE id = ".$_SESSION["user_id"]);
+       // Execute
+       if($this->db->execute()){
+        $_SESSION['user_avatar'] = $fileName;
+        return true;
+       } else {
+        return false;
+       }
+    }
 
     // Find user by email
     public function findUserByEmail($email){

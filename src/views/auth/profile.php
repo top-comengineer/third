@@ -4,13 +4,29 @@
   <div class="container emp-profile" style="padding: 50px;">
     <h2>Accoun Setting</h2>
     <div class="row">
-      <div class="col-md-4 frame">
-        <div class="avatar">
-          <img src="<?php echo URLROOT; ?>/public/assets/img/avatar.png" alt="avatar">
-          <form method="POST" enctype="multipart/form-data" name="myForm" id="uploadAvatar">
-            <div id="uploadBtn" onclick="getFile()">Change</div>
-            <div style='height: 0px;width: 0px; overflow:hidden;'>
-              <input id="upFile" type="file" value="upload" onchange="sub(this)" />
+      <div class="col-md-4">
+        <div id="body-overlay">
+          <div><img src="loading.gif" width="64px" height="64px" /></div>
+        </div>
+        <div class="bgColor">
+          <form id="uploadForm" action="upload.php" method="post">
+            <div id="targetOuter">
+              <div id="targetLayer">
+                <?php if (isset($_SESSION['user_avatar'])){?><img
+                  src="<?php echo URLROOT?>/public/assets/img/<?php echo $_SESSION['user_avatar']?>" width="200px"
+                  height="200px" class="upload-preview" /><?php }?>
+              </div>
+              <img src="<?php echo URLROOT; ?>/public/assets/img/no-avatar.png" class="icon-choose-image" />
+              <div class="icon-choose-image" onClick="showUploadOption()"></div>
+              <div id="profile-upload-option">
+                <div class="profile-upload-option-list"><input name="userImage" id="userImage" type="file"
+                    class="inputFile" onChange="showPreview(this);"></input><span>Choose</span></div>
+                <div class="profile-upload-option-list" onClick="hideUploadOption(); window.location.reload();">Cancel
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <input type="submit" value="Change" class="btnSubmit" onClick="hideUploadOption();" />
             </div>
           </form>
         </div>
@@ -58,18 +74,72 @@
 </div>
 
 <script type="text/javascript">
-function getFile() {
-  document.getElementById("upFile").click();
+function showPreview(objFileInput) {
+  hideUploadOption();
+  if (objFileInput.files[0]) {
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {
+      $("#targetLayer").html('<img src="' + e.target.result +
+        '" width="200px" height="200px" class="upload-preview" />');
+      $("#targetLayer").css('opacity', '0.7');
+      $(".icon-choose-image").css('opacity', '0');
+    }
+    fileReader.readAsDataURL(objFileInput.files[0]);
+  }
 }
 
-function sub(obj) {
-  var file = obj.value;
-  var fileName = file.split("\\");
-  document.getElementById("uploadBtn").innerHTML = fileName[fileName.length - 1];
-  // document.myForm.submit();
-  console.log("upload form data--->", $(document.myForm));
-  event.preventDefault();
+function showUploadOption() {
+  $("#profile-upload-option").css('display', 'block');
 }
+
+function hideUploadOption() {
+  $("#profile-upload-option").css('display', 'none');
+}
+
+function removeProfilePhoto() {
+  hideUploadOption();
+  $("#userImage").val('');
+  $.ajax({
+    url: "remove.php",
+    type: "POST",
+    data: new FormData(this),
+    beforeSend: function() {
+      $("#body-overlay").show();
+    },
+    contentType: false,
+    processData: false,
+    success: function(data) {
+      $("#targetLayer").html('');
+      setInterval(function() {
+        $("#body-overlay").hide();
+      }, 500);
+    },
+    error: function() {}
+  });
+}
+$(document).ready(function(e) {
+  $("#uploadForm").on('submit', (function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: "<?php echo URLROOT; ?>/users/avatar",
+      type: "POST",
+      data: new FormData(this),
+      beforeSend: function() {
+        $("#body-overlay").show();
+      },
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        $("#targetLayer").css('opacity', '1');
+        setInterval(function() {
+          $("#body-overlay").hide();
+        }, 500);
+      },
+      error: function() {}
+    });
+  }));
+});
+
 $(document).ready(function() {
   // hide password input when load this page
   $("#password-form").hide();
@@ -95,7 +165,7 @@ $(document).ready(function() {
         url: "<?php echo URLROOT; ?>/users/update",
         data: $(this).serialize(),
         success: function() {
-          // window.location.href = "<?php echo URLROOT; ?>/users/login";
+          window.location.reload();
         }
       })
     });
